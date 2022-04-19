@@ -6,10 +6,10 @@ class Play extends Phaser.Scene {
 preload() {
     // load images and tile sprites
     this.load.image('rocket', './assets/ball.png');
-    this.load.image('spaceship', './assets/spaceship.png');
+    this.load.image('spaceship', './assets/ship.png');
     this.load.image('waves', './assets/wavesbg.png');
     // load spritesheet
-    this.load.spritesheet('explosion', './assets/explosion.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9})
+    this.load.spritesheet('explosion', './assets/sinkspritesheet.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9})
 }
 
     create() {

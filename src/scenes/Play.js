@@ -7,14 +7,14 @@ preload() {
     // load images and tile sprites
     this.load.image('rocket', './assets/rocket.png');
     this.load.image('spaceship', './assets/spaceship.png');
-    this.load.image('starfield', './assets/starfield.png');
+    this.load.image('waves', './assets/wavesbg.png');
     // load spritesheet
     this.load.spritesheet('explosion', './assets/explosion.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9})
 }
 
     create() {
         // place tile sprite
-        this.starfield = this.add.tileSprite(0, 0, 640, 480, 'starfield').setOrigin(0, 0);
+        this.waves = this.add.tileSprite(0, 0, 640, 480, 'waves').setOrigin(0, 0);
         // green UI background
         this.add.rectangle(0, borderUISize + borderPadding, game.config.width, borderUISize * 2, 0x00FF00).setOrigin(0, 0);
         // white borders
@@ -84,7 +84,7 @@ preload() {
             this.scene.start("menuScene");
         }
 
-        this.starfield.tilePositionX -= 4;
+        this.waves.tilePositionX -= 4;
         if (!this.gameOver) {
             this.p1Rocket.update();
             this.ship01.update();

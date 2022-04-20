@@ -8,14 +8,15 @@ class Menu extends Phaser.Scene {
         this.load.audio('sfx_select', './assets/button-21.wav');
         this.load.audio('sfx_explosion', './assets/Explosion2.wav');
         this.load.audio('sfx_rocket', './assets/cannon.wav');
+        this.load.audio('sfx_rocketSecond', './assets/cannon.wav');
     }
 
     create() {
         let menuConfig = {
-            fontFamily: 'Courier',
-            fontSize: '28px',
-            backgroundColor: '#F3B141',
-            color: '#843605',
+            fontFamily: 'Times',
+            fontSize: '25px',
+            backgroundColor: '#AAAAFF',
+            color: '#0000FF',
             align: 'right',
             padding: {
                 top: 5,
@@ -25,9 +26,9 @@ class Menu extends Phaser.Scene {
         }
         
         //show menu text
-        this.add.text(game.config.width/2, game.config.height/2 - borderUISize - borderPadding, 'ROCKET PATROL', menuConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, game.config.height/2 - borderUISize - borderPadding, 'Cannon Brigade', menuConfig).setOrigin(0.5);
         this.add.text(game.config.width/2, game.config.height/2, 'Use <--> arrows to move & (F) to fire', menuConfig).setOrigin(0.5);
-        menuConfig.backgroundColor = '#00FF00';
+        menuConfig.backgroundColor = '#2222FF';
         menuConfig.color = '#000';
         this.add.text(game.config.width/2, game.config.height/2 + borderUISize + borderPadding, 'Press <- for Novice or -> for Expert', menuConfig).setOrigin(0.5);
         

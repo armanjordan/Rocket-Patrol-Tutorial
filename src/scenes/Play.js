@@ -6,6 +6,7 @@ class Play extends Phaser.Scene {
 preload() {
     // load images and tile sprites
     this.load.image('rocket', './assets/ball.png');
+    this.load.image('second', './assets/second.png');
     this.load.image('spaceship', './assets/ship.png');
     this.load.image('waves', './assets/wavesbg.png');
     this.load.image('speedship', './assets/speedship.png');
@@ -27,6 +28,9 @@ preload() {
         // add rocket (p1)
         this.p1Rocket = new Rocket(this, game.config.width/2, game.config.height - borderUISize - borderPadding, 'rocket').setOrigin(0.5, 0);
 
+        // add rocket (p2)
+        this.p2Rocket = new Second(this, game.config.width/2 + 100, game.config.height - borderUISize - borderPadding, 'second').setOrigin(0.5, 0);
+
         // add spaceships (x3)
         this.ship01 = new Spaceship(this, game.config.width + borderUISize*6, borderUISize*4, 'spaceship', 0, 30, game.settings.spaceshipSpeed).setOrigin(0, 0);
         this.ship02 = new Spaceship(this, game.config.width + borderUISize*3, borderUISize*5 + borderPadding*2, 'spaceship', 0, 20, game.settings.spaceshipSpeed).setOrigin(0, 0);
@@ -39,6 +43,10 @@ preload() {
         keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
+
+        keyX = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.X);
+        keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
+        keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
 
         // animation config
         this.anims.create({
@@ -74,6 +82,7 @@ preload() {
             this.add.text(game.config.width/2, game.config.height/2, 'GAME OVER', scoreConfig).setOrigin(0.5);
             this.add.text(game.config.width/2, game.config.height/2 + 64, 'Press (R) to Restart or <- for Menu', scoreConfig).setOrigin(0.5);
             this.gameOver = true;
+
         }, null, this);
     }
 
@@ -90,6 +99,7 @@ preload() {
         this.waves.tilePositionX -= 4;
         if (!this.gameOver) {
             this.p1Rocket.update();
+            this.p2Rocket.update();
             this.ship01.update();
             this.ship02.update();
             this.ship03.update();
@@ -111,6 +121,23 @@ preload() {
         }
         if(this.checkCollision(this.p1Rocket, this.speedship)){
             this.p1Rocket.reset();
+            this.shipExplode(this.speedship);
+        }
+
+        if(this.checkCollision(this.p2Rocket, this.ship03)){
+            this.p2Rocket.reset();
+            this.shipExplode(this.ship03);
+        }
+        if(this.checkCollision(this.p2Rocket, this.ship02)){
+            this.p2Rocket.reset();
+            this.shipExplode(this.ship02);
+        }
+        if(this.checkCollision(this.p2Rocket, this.ship01)){
+            this.p2Rocket.reset();
+            this.shipExplode(this.ship01);
+        }
+        if(this.checkCollision(this.p2Rocket, this.speedship)){
+            this.p2Rocket.reset();
             this.shipExplode(this.speedship);
         }
     }
